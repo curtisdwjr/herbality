@@ -26,35 +26,40 @@
   #header .disclaimer { margin: 10px auto 0; font-size: 11px; color: #5a4a38; letter-spacing: 0.05em; font-style: italic; max-width: 420px; line-height: 1.6; }
   /* Main */
   #main { max-width: 920px; margin: 0 auto; padding: 0 16px 60px; }
-  /* Search bar */
-  #search-bar {
-    padding: 24px 0 16px;
-    position: sticky; top: 0; z-index: 10;
-    background: linear-gradient(180deg, #1a1208 70%, transparent 100%);
+  /* I need help section */
+  #help-section {
+    padding: 20px 0 4px;
   }
-  #search-wrap { position: relative; }
-  #search-icon { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); font-size: 17px; opacity: 0.7; pointer-events: none; }
-  #search-input {
-    width: 100%; padding: 14px 16px 14px 46px;
-    background: rgba(255,255,255,0.06); border: 1px solid rgba(200,170,100,0.3);
-    border-radius: 12px; color: #e8d8b8; font-size: 15px; outline: none;
-    font-family: Georgia, serif; backdrop-filter: blur(8px);
+  #help-label {
+    font-size: 12px; color: #9a8a6a; letter-spacing: 0.2em;
+    font-style: italic; margin-bottom: 10px; text-align: center;
   }
-  #search-input::placeholder { color: #7a6a50; }
-  /* Category filters */
-  #filters { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
-  .filter-btn {
-    padding: 5px 14px; border-radius: 20px;
+  #help-row {
+    display: flex; flex-wrap: nowrap; overflow-x: auto; gap: 8px;
+    padding-bottom: 6px; scrollbar-width: none;
+  }
+  #help-row::-webkit-scrollbar { display: none; }
+  .help-btn {
+    flex-shrink: 0; display: flex; align-items: center; gap: 6px;
+    padding: 8px 14px; border-radius: 24px;
     border: 1px solid rgba(200,170,100,0.25);
-    background: transparent; color: #9a8a6a;
-    font-size: 12px; cursor: pointer; letter-spacing: 0.05em;
-    font-family: Georgia, serif; transition: all 0.2s;
+    background: rgba(255,255,255,0.04);
+    color: #c8b890; font-size: 12px; cursor: pointer;
+    font-family: Georgia, serif; letter-spacing: 0.05em;
+    transition: all 0.2s; white-space: nowrap;
   }
-  .filter-btn.active {
-    border-color: #d4b878;
-    background: rgba(212,184,120,0.15);
-    color: #d4b878;
+  .help-btn:hover { border-color: rgba(200,170,100,0.5); background: rgba(255,255,255,0.08); color: #e8d4a8; }
+  .help-btn.active {
+    border-color: #d4b878; background: rgba(212,184,120,0.65); color: #2a1a08;
   }
+  #clear-btn {
+    display: none; background: none; border: 1px solid rgba(200,170,100,0.25);
+    color: #7a6a50; padding: 4px 14px; border-radius: 20px;
+    font-size: 11px; cursor: pointer; font-family: Georgia, serif;
+    letter-spacing: 0.08em; margin-top: 8px; transition: all 0.2s;
+  }
+  #clear-btn:hover { color: #d4b878; border-color: #d4b878; }
+
   /* Count */
   #herb-count { font-size: 12px; color: #6a5a4a; margin: 0 0 16px; letter-spacing: 0.05em; }
   /* Grid */
@@ -142,6 +147,15 @@
   .af-label { font-size: 10px; color: #6a9a60; letter-spacing: 0.12em; margin-bottom: 3px; }
   .af-value { font-size: 11px; color: #a8c898; line-height: 1.4; }
   .af-note { font-size: 11px; color: #7a9a70; line-height: 1.6; font-style: italic; margin: 0; }
+  /* Tea tab */
+  .tea-box { background: rgba(100,140,180,0.08); border: 1px solid rgba(100,140,180,0.25); border-radius: 12px; padding: 16px 18px; margin-bottom: 14px; }
+  .tea-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; }
+  .tea-cell { background: rgba(100,140,180,0.07); border: 1px solid rgba(100,140,180,0.2); border-radius: 8px; padding: 8px 12px; }
+  .tea-cell-label { font-size: 10px; color: #7a9aaa; letter-spacing: 0.12em; margin-bottom: 3px; }
+  .tea-cell-value { font-size: 12px; color: #c8d8e8; line-height: 1.4; }
+  .tea-method { font-size: 13px; color: #b8c8d8; line-height: 1.8; margin: 0 0 14px; }
+  .tea-tip { background: rgba(80,120,160,0.1); border-left: 3px solid rgba(100,160,200,0.4); padding: 10px 14px; border-radius: 0 8px 8px 0; font-size: 12px; color: #9ab8cc; line-height: 1.6; font-style: italic; }
+  .tea-blend { font-size: 12px; color: #a8c0d0; line-height: 1.6; margin: 0 0 14px; }
 </style>
 </head>
 <body>
@@ -151,18 +165,16 @@
   <div class="leaf">🌿</div>
   <h1>HERBALITY</h1>
   <p class="sub1">30 essential herbs and their uses</p>
-  <p class="sub2">includes tincture recipes*</p>
-  <p class="disclaimer">*For personal use and educational purposes only. Not a substitute for professional medical advice, diagnosis, or treatment. Always consult a qualified healthcare provider before using herbal remedies, especially if pregnant, nursing, or taking medications.</p>
+  <p class="sub2">includes tinctures*</p>
+  <p class="disclaimer">*For personal use and educational purposes only. Not a substitute for professional medical advice, diagnosis, or treatment. Always consult a qualified healthcare provider before using herbal remedies, especially if pregnant, nursing, or taking medications. Do not combine herbs without first checking for interactions — some combinations can be harmful or reduce effectiveness.</p>
 </div>
 
 <!-- Main -->
 <div id="main">
-  <div id="search-bar">
-    <div id="search-wrap">
-      <span id="search-icon">🔍</span>
-      <input id="search-input" type="text" placeholder="Search by herb name, benefit, or use…" oninput="renderGrid()">
-    </div>
-    <div id="filters"></div>
+  <div id="help-section">
+    <p id="help-label">I need help with…</p>
+    <div id="help-row"></div>
+    <button id="clear-btn" onclick="clearSelection()">✕ show all herbs</button>
   </div>
   <p id="herb-count"></p>
   <div id="grid"></div>
@@ -181,8 +193,9 @@
       </div>
     </div>
     <div id="tabs">
-      <button class="tab-btn active" onclick="switchTab('info')">🌿 HERB INFO</button>
-      <button class="tab-btn" onclick="switchTab('tincture')">⚗️ TINCTURE RECIPE</button>
+      <button class="tab-btn active" onclick="switchTab('info')">🌿 PROFILE</button>
+      <button class="tab-btn" onclick="switchTab('tincture')">⚗️ TINCTURE</button>
+      <button class="tab-btn" onclick="switchTab('tea')">☕ TEA</button>
     </div>
     <div id="tab-content"></div>
   </div>
@@ -216,7 +229,7 @@ function svgFor(name, h) {
     "Lion's Mane": (()=>{let spines='';for(let i=0;i<40;i++){const a=(i/40)*Math.PI*2;const r1=20+((i*7)%15);const r2=35+((i*13)%25);spines+=`<line x1="${200+Math.cos(a)*r1}" y1="${65+Math.sin(a)*r1*0.8}" x2="${200+Math.cos(a)*r2}" y2="${65+Math.sin(a)*r2*0.8}" stroke="#e0b860" stroke-width="2.5" opacity="0.8" stroke-linecap="round"/>`;}return `<svg viewBox="0 0 400 140" style="width:100%;height:${h}px;display:block"><rect width="400" height="140" fill="#1a1408"/><ellipse cx="200" cy="65" rx="55" ry="45" fill="#c89840" opacity="0.3"/>${spines}<ellipse cx="200" cy="65" rx="20" ry="18" fill="#d4a840"/><ellipse cx="200" cy="65" rx="14" ry="12" fill="#e8c060"/><text x="200" y="126" text-anchor="middle" fill="#d4a840" font-size="11" font-family="Georgia" letter-spacing="2">LION'S MANE</text></svg>`;})(),
     "Marshmallow Root": (()=>{let content='';[[-40,30],[-20,10],[0,-10],[20,10],[40,30]].forEach(([dx,dy])=>{content+=`<line x1="200" y1="${85+dy/3}" x2="${200+dx}" y2="${85+dy}" stroke="#7a8a5a" stroke-width="2"/>`;for(let j=0;j<5;j++){const a2=(j/5)*Math.PI*2;content+=`<ellipse cx="${200+dx+Math.cos(a2)*8}" cy="${85+dy+Math.sin(a2)*8}" rx="6" ry="4" fill="${j%2===0?"#e8d0f0":"#f0e0ff"}" opacity="0.85" transform="rotate(${j*36} ${200+dx} ${85+dy})"/>`;}}); return `<svg viewBox="0 0 400 140" style="width:100%;height:${h}px;display:block"><rect width="400" height="140" fill="#0a0a1a"/><rect x="198" y="60" width="4" height="70" fill="#7a8a5a" rx="2"/>${content}<text x="200" y="128" text-anchor="middle" fill="#c0a0d8" font-size="11" font-family="Georgia" letter-spacing="1">MARSHMALLOW ROOT</text></svg>`;})(),
     "Milk Thistle": (()=>{let petals='',spines='';for(let i=0;i<12;i++){const a=(i/12)*Math.PI*2-Math.PI/2;petals+=`<ellipse cx="${200+Math.cos(a)*35}" cy="${60+Math.sin(a)*28}" rx="4" ry="16" fill="#7060a0" opacity="0.85" transform="rotate(${a*(180/Math.PI)+90} ${200+Math.cos(a)*35} ${60+Math.sin(a)*28})"/>`;}for(let i=0;i<20;i++){const a=(i/20)*Math.PI*2;spines+=`<line x1="${200+Math.cos(a)*10}" y1="${60+Math.sin(a)*10}" x2="${200+Math.cos(a)*16}" y2="${60+Math.sin(a)*16}" stroke="#d0a0e8" stroke-width="1.5"/>`;}return `<svg viewBox="0 0 400 140" style="width:100%;height:${h}px;display:block"><rect width="400" height="140" fill="#080a1a"/><rect x="198" y="65" width="4" height="65" fill="#4a6a3a" rx="2"/>${petals}<circle cx="200" cy="60" r="16" fill="#5a4080"/>${spines}<text x="200" y="128" text-anchor="middle" fill="#9070c0" font-size="11" font-family="Georgia" letter-spacing="2">MILK THISTLE</text></svg>`;})(),
-    "Motherwort": (()=>{let whorls='',flowers='';[55,65,80,95,108].forEach((y,i)=>{[-1,1].forEach(side=>{whorls+=`<line x1="200" y1="${y}" x2="${200+side*30}" y2="${y}" stroke="#5a7a40" stroke-width="2"/><ellipse cx="${200+side*30}" cy="${y}" rx="16" ry="9" fill="${i%2===0?"#4a8a30":"#6aaa40"}" opacity="0.85" transform="rotate(${side*15} ${200+side*30} ${y})"/>`;});});[48,56,64].forEach(y=>{flowers+=`<ellipse cx="200" cy="${y}" rx="6" ry="4" fill="#d070a0" opacity="0.9"/>`;});return `<svg viewBox="0 0 400 140" style="width:100%;height:${h}px;display:block"><rect width="400" height="140" fill="#0a1205"/><rect x="198" y="40" width="4" height="90" fill="#5a7a40" rx="2"/>${whorls}${flowers}<text x="200" y="128" text-anchor="middle" fill="#a05080" font-size="11" font-family="Georgia" letter-spacing="3">MOTHERWORT</text></svg>`;})(),
+    "Motherwort": (()=>{let whorls='',flowers='';[55,65,80,95,108].forEach((y,i)=>{[-1,1].forEach(side=>{const fill=i%2===0?"#4a8a30":"#6aaa40";whorls+=`<line x1="200" y1="${y}" x2="${200+side*30}" y2="${y}" stroke="#5a7a40" stroke-width="2"/><ellipse cx="${200+side*30}" cy="${y}" rx="16" ry="9" fill="${fill}" opacity="0.85" transform="rotate(${side*15} ${200+side*30} ${y})"/>`;});});[48,56,64].forEach(y=>{flowers+=`<ellipse cx="200" cy="${y}" rx="6" ry="4" fill="#d070a0" opacity="0.9"/>`;});return `<svg viewBox="0 0 400 140" style="width:100%;height:${h}px;display:block"><rect width="400" height="140" fill="#0a1205"/><rect x="198" y="40" width="4" height="90" fill="#5a7a40" rx="2"/>${whorls}${flowers}<text x="200" y="128" text-anchor="middle" fill="#a05080" font-size="11" font-family="Georgia" letter-spacing="3">MOTHERWORT</text></svg>`;})(),
     "Nettle": (()=>{let leaves='';[55,72,89,106].forEach((y,i)=>{[-1,1].forEach(side=>{leaves+=`<line x1="200" y1="${y}" x2="${200+side*35}" y2="${y+5}" stroke="#3a6a20" stroke-width="2"/><path d="M${200+side*10},${y+2} L${200+side*25},${y-8} L${200+side*35},${y+5} L${200+side*25},${y+14} Z" fill="#3a8a20" opacity="0.85"/>`;});});return `<svg viewBox="0 0 400 140" style="width:100%;height:${h}px;display:block"><rect width="400" height="140" fill="#051205"/><rect x="198" y="35" width="4" height="95" fill="#3a6a20" rx="2"/>${leaves}<text x="200" y="128" text-anchor="middle" fill="#60a040" font-size="11" font-family="Georgia" letter-spacing="3">NETTLE</text></svg>`;})(),
     "Passionflower": (()=>{let outer='',inner='',corona='';for(let i=0;i<10;i++){const a=(i/10)*Math.PI*2;outer+=`<ellipse cx="${200+Math.cos(a)*40}" cy="${60+Math.sin(a)*32}" rx="5" ry="20" fill="#d0a0e0" opacity="0.9" transform="rotate(${a*(180/Math.PI)+90} ${200+Math.cos(a)*40} ${60+Math.sin(a)*32})"/>`;}for(let i=0;i<5;i++){const a=(i/5)*Math.PI*2+Math.PI/10;inner+=`<ellipse cx="${200+Math.cos(a)*40}" cy="${60+Math.sin(a)*32}" rx="4" ry="20" fill="#f0c0ff" opacity="0.7" transform="rotate(${a*(180/Math.PI)+90} ${200+Math.cos(a)*40} ${60+Math.sin(a)*32})"/>`;}for(let i=0;i<20;i++){const a=(i/20)*Math.PI*2;corona+=`<line x1="200" y1="60" x2="${200+Math.cos(a)*22}" y2="${60+Math.sin(a)*18}" stroke="#9040c0" stroke-width="1.5" opacity="0.8"/>`;}return `<svg viewBox="0 0 400 140" style="width:100%;height:${h}px;display:block"><rect width="400" height="140" fill="#0a0818"/>${outer}${inner}${corona}<circle cx="200" cy="60" r="10" fill="#7030a0"/><circle cx="200" cy="60" r="6" fill="#9050c0"/><text x="200" y="126" text-anchor="middle" fill="#c080e0" font-size="11" font-family="Georgia" letter-spacing="2">PASSIONFLOWER</text></svg>`;})(),
     "Peppermint": (()=>{let pairs='';[0.2,0.4,0.6,0.8].forEach((t,i)=>{const y=20+t*100;const x=200+Math.sin(t*Math.PI*3)*15;pairs+=`<line x1="${x}" y1="${y}" x2="${x-30}" y2="${y+8}" stroke="#30a060" stroke-width="2"/><ellipse cx="${x-30}" cy="${y+8}" rx="20" ry="12" fill="${i%2===0?"#20c070":"#30e080"}" opacity="0.85" transform="rotate(-15 ${x-30} ${y+8})"/><line x1="${x}" y1="${y}" x2="${x+30}" y2="${y+8}" stroke="#30a060" stroke-width="2"/><ellipse cx="${x+30}" cy="${y+8}" rx="20" ry="12" fill="${i%2===0?"#20c070":"#30e080"}" opacity="0.85" transform="rotate(15 ${x+30} ${y+8})"/>`;});return `<svg viewBox="0 0 400 140" style="width:100%;height:${h}px;display:block"><rect width="400" height="140" fill="#051510"/><path d="M200,120 Q180,90 185,60 Q190,30 200,20 Q210,30 215,60 Q220,90 200,120" fill="none" stroke="#30a060" stroke-width="3"/>${pairs}<text x="200" y="128" text-anchor="middle" fill="#40d080" font-size="11" font-family="Georgia" letter-spacing="3">PEPPERMINT</text></svg>`;})(),
@@ -230,6 +243,7 @@ function svgFor(name, h) {
     "Uva Ursi": (()=>{let content='';for(let k=0;k<5;k++){const bx=160+k*18;content+=`<path d="M${bx},120 Q${bx-5},95 ${bx+5},70 Q${bx+10},50 ${bx},30" fill="none" stroke="#3a6a4a" stroke-width="2"/>`;for(let i=0;i<6;i++){const y=35+i*14;content+=`<ellipse cx="${bx-12}" cy="${y}" rx="11" ry="7" fill="#3a7050" opacity="0.9" transform="rotate(-20 ${bx-12} ${y})"/><ellipse cx="${bx+12}" cy="${y+5}" rx="11" ry="7" fill="#4a8060" opacity="0.85" transform="rotate(20 ${bx+12} ${y+5})"/>`;}if(k%2===0)content+=`<circle cx="${bx}" cy="75" r="7" fill="#4060a0" opacity="0.8"/>`;}return `<svg viewBox="0 0 400 140" style="width:100%;height:${h}px;display:block"><rect width="400" height="140" fill="#060e10"/>${content}<text x="200" y="128" text-anchor="middle" fill="#5080b0" font-size="11" font-family="Georgia" letter-spacing="3">UVA URSI</text></svg>`;})(),
     "Valerian": (()=>{let umbels='';for(let i=0;i<7;i++){const a=(i/7)*Math.PI*2-Math.PI/2;const r=35;umbels+=`<line x1="200" y1="60" x2="${200+Math.cos(a)*r}" y2="${60+Math.sin(a)*r*0.7}" stroke="#6a5a8a" stroke-width="2"/><circle cx="${200+Math.cos(a)*r}" cy="${60+Math.sin(a)*r*0.7}" r="4" fill="#d0b0f0" opacity="0.9"/>`;for(let j=0;j<3;j++){const a2=a+(j-1)*0.4;umbels+=`<circle cx="${200+Math.cos(a2)*(r+10)}" cy="${60+Math.sin(a2)*(r+10)*0.7}" r="3" fill="#e0c8ff" opacity="0.7"/>`;} }return `<svg viewBox="0 0 400 140" style="width:100%;height:${h}px;display:block"><rect width="400" height="140" fill="#100818"/><rect x="198" y="60" width="4" height="70" fill="#6a5a8a" rx="2"/>${umbels}<text x="200" y="128" text-anchor="middle" fill="#b090e0" font-size="11" font-family="Georgia" letter-spacing="3">VALERIAN</text></svg>`;})(),
     "Wild Oat": (()=>{let stalks='';[-30,-15,0,15,30].forEach((dx,k)=>{stalks+=`<path d="M${200+dx},125 Q${200+dx+8},95 ${200+dx+3},60 Q${200+dx-2},35 ${200+dx+5},15" fill="none" stroke="#8a9a60" stroke-width="2"/>`;[20,35,50,65].forEach((y,i)=>{stalks+=`<line x1="${200+dx+3}" y1="${y}" x2="${200+dx+3+15}" y2="${y+8}" stroke="#8a9a60" stroke-width="1.5"/><ellipse cx="${200+dx+3+15}" cy="${y+8}" rx="10" ry="5" fill="${i%2===0?"#c0b870":"#d0c880"}" opacity="0.85"/>`;});});return `<svg viewBox="0 0 400 140" style="width:100%;height:${h}px;display:block"><rect width="400" height="140" fill="#0e1008"/>${stalks}<text x="200" y="136" text-anchor="middle" fill="#c0b870" font-size="11" font-family="Georgia" letter-spacing="3">WILD OAT</text></svg>`;})(),
+    "Mullein": (()=>{let stalks='';[-20,0,20].forEach((dx,k)=>{stalks+=`<rect x="${197+dx}" y="20" width="6" height="100" fill="#8a9a50" rx="2"/>`;for(let i=0;i<18;i++){const y=25+i*5.5;const w=4+i*0.8;stalks+=`<ellipse cx="${200+dx}" cy="${y+2}" rx="${w}" ry="3.5" fill="${i%2===0?"#a0b060":"#b8c870"}" opacity="0.9"/>`;} });return `<svg viewBox="0 0 400 140" style="width:100%;height:${h}px;display:block"><rect width="400" height="140" fill="#0a100a"/>${stalks}<text x="200" y="132" text-anchor="middle" fill="#a0b060" font-size="11" font-family="Georgia" letter-spacing="3">MULLEIN</text></svg>`;})(),
     "Yarrow": (()=>{let clusters='';[[-30,15],[-15,5],[0,-5],[15,5],[30,15]].forEach(([dx,dy])=>{clusters+=`<line x1="200" y1="90" x2="${200+dx}" y2="${90+dy}" stroke="#6a8a40" stroke-width="2"/>`;for(let j=0;j<5;j++){const a=(j/5)*Math.PI*2;clusters+=`<circle cx="${200+dx+Math.cos(a)*8}" cy="${90+dy+Math.sin(a)*6}" r="4" fill="${j%2===0?"#f0f0f0":"#e0d8d0"}" opacity="0.9"/>`;} clusters+=`<circle cx="${200+dx}" cy="${90+dy}" r="5" fill="#f8f4f0"/>`;});return `<svg viewBox="0 0 400 140" style="width:100%;height:${h}px;display:block"><rect width="400" height="140" fill="#0e0e08"/><rect x="198" y="65" width="4" height="65" fill="#6a8a40" rx="2"/>${clusters}<text x="200" y="128" text-anchor="middle" fill="#d0d0b8" font-size="11" font-family="Georgia" letter-spacing="3">YARROW</text></svg>`;})(),
   };
   return svgs[name] || `<svg viewBox="0 0 400 140" style="width:100%;height:${h}px;display:block"><rect width="400" height="140" fill="#1a1a10"/><text x="200" y="110" text-anchor="middle" fill="#a09060" font-size="11" font-family="Georgia" letter-spacing="3">${name.toUpperCase()}</text></svg>`;
@@ -250,52 +264,47 @@ const herbs = [
   { name:"Lion's Mane", latin:"Hericium erinaceus", emoji:"🍄", category:"Cognitive", uses:"Stimulates nerve growth factor (NGF), enhances memory and focus, may protect against neurodegenerative diseases, reduces anxiety and depression.", benefits:["Brain health","Memory","Focus","Neuroprotective"], tincture:{ ratio:"1:5 (dried mushroom to menstruum)", alcohol:"Double extraction: hot water + 60% ethanol", steep:"4–6 weeks", dose:"2–4 mL, 1–2x daily", instructions:"DOUBLE EXTRACTION: First, simmer dried lion's mane in water for 2 hours. Strain and reduce liquid by half. Cool completely. Then separately make an alcohol tincture (1:5, 60% ethanol, 4–6 weeks). Combine both extracts 1:1. This captures both water-soluble beta-glucans and alcohol-soluble compounds." }},
   { name:"Marshmallow Root", latin:"Althaea officinalis", emoji:"🌾", category:"Demulcent", uses:"Soothes mucous membranes, relieves sore throats, digestive tract inflammation, urinary tract issues, and dry coughs.", benefits:["Sore throat","Digestive soothing","UTI support","Cough relief"], tincture:{ ratio:"1:5 (root to menstruum)", alcohol:"25% ethanol (low alcohol preserves mucilage)", steep:"4 weeks cold infusion preferred", dose:"4–8 mL, 3–4x daily", instructions:"COLD INFUSION METHOD: Marshmallow root's healing mucilage is best extracted in cold water. Combine root with 25% alcohol in cold water. Infuse in the refrigerator for 4 weeks. Strain gently. The low alcohol preserves the slippery, soothing mucilaginous compounds." }},
   { name:"Milk Thistle", latin:"Silybum marianum", emoji:"🌺", category:"Liver", uses:"Protects and regenerates liver cells, antioxidant, anti-inflammatory, supports gallbladder, and may help with liver conditions.", benefits:["Liver protection","Detox","Antioxidant","Gallbladder"], tincture:{ ratio:"1:4 (seeds to menstruum)", alcohol:"60% ethanol", steep:"6 weeks", dose:"2–4 mL, 3x daily", instructions:"Grind milk thistle seeds lightly to break the outer shell. Cover with 60% alcohol and steep 6 weeks, shaking daily. Strain through fine cloth. The active compound silymarin extracts best in higher alcohol concentrations. Best taken 20 minutes before meals." }},
+  { name:"Mullein", latin:"Verbascum thapsus", emoji:"🌿", category:"Respiratory", uses:"Powerful lung tonic, soothes inflamed airways, expels mucus, relieves dry coughs and bronchitis, and supports respiratory health during colds and asthma.", benefits:["Lung tonic","Expectorant","Cough relief","Bronchitis"], tincture:{ ratio:"1:5 (dried leaves and flowers to menstruum)", alcohol:"50% ethanol", steep:"4–6 weeks", dose:"2–4 mL, 3–4x daily", instructions:"Use dried mullein leaves and flowers. Cover with 50% alcohol and steep 4–6 weeks. Strain carefully through fine cloth — the tiny leaf hairs can irritate the throat if not fully removed. Bottle and store in dark glass. Combine with thyme and marshmallow root for a powerful respiratory blend." }},
   { name:"Motherwort", latin:"Leonurus cardiaca", emoji:"🌿", category:"Cardiovascular & Women's Health", uses:"Calms heart palpitations, reduces anxiety, regulates menstrual cycles, eases menstrual cramping, and supports cardiovascular function.", benefits:["Heart rhythm","Anxiety","Menstrual health","Calming"], tincture:{ ratio:"1:5 (aerial parts to menstruum)", alcohol:"50% ethanol", steep:"4–6 weeks", dose:"2–4 mL, up to 3x daily", instructions:"Use fresh or dried aerial parts (leaves and flowers). Cover with 50% alcohol and steep 4–6 weeks. Strain and bottle. Note: Avoid during pregnancy. Bitter taste — can be mixed with a small amount of honey or taken in juice." }},
   { name:"Nettle", latin:"Urtica dioica", emoji:"🌱", category:"Nutritive", uses:"Highly nutritious, anti-allergenic, supports kidneys, reduces inflammation, helpful for hay fever, and supports hair and skin health.", benefits:["Allergy relief","Kidney support","Anti-inflammatory","Nutritive"], tincture:{ ratio:"1:5 (dried herb to menstruum)", alcohol:"40% ethanol", steep:"4–6 weeks", dose:"3–5 mL, 3x daily for allergies", instructions:"Use dried nettle leaf (wear gloves if fresh!). Cover with 40% alcohol. Steep 4–6 weeks. Strain and bottle. For seasonal allergies, begin taking 4–6 weeks before your allergy season starts for best preventive effect." }},
-  { name:"Passionflower", latin:"Passiflora incarnata", emoji:"🌸", category:"Nervine", uses:"Powerful sedative for insomnia, reduces anxiety without causing dependency, eases nerve pain, and helps with withdrawal symptoms.", benefits:["Insomnia","Anxiety","Nerve pain","Non-habit-forming"], tincture:{ ratio:"1:5 (aerial parts to menstruum)", alcohol:"45% ethanol", steep:"4 weeks", dose:"2–4 mL, 1 hour before bed", instructions:"Fill jar with dried passionflower (leaves, stems, and flowers). Cover with 45% alcohol. Steep 4 weeks in dark. Strain and bottle. One of the most effective herbal sleep tinctures — often works within 20–30 minutes. Pairs well with valerian." }},
+  { name:"Passionflower", latin:"Passiflora incarnata", emoji:"🌸", category:"Nervine", uses:"Powerful sedative for insomnia, reduces anxiety without causing dependency, eases nerve pain, and helps with withdrawal symptoms.", benefits:["Insomnia","Sleep","Anxiety","Non-habit-forming"], tincture:{ ratio:"1:5 (aerial parts to menstruum)", alcohol:"45% ethanol", steep:"4 weeks", dose:"2–4 mL, 1 hour before bed", instructions:"Fill jar with dried passionflower (leaves, stems, and flowers). Cover with 45% alcohol. Steep 4 weeks in dark. Strain and bottle. One of the most effective herbal sleep tinctures — often works within 20–30 minutes. Pairs well with valerian." }},
   { name:"Peppermint", latin:"Mentha piperita", emoji:"🌿", category:"Digestive", uses:"Relieves IBS symptoms, reduces nausea, eases headaches, clears sinuses, antibacterial, and improves focus and alertness.", benefits:["IBS relief","Nausea","Headache","Focus"], tincture:{ ratio:"1:5 (fresh) or 1:4 (dried)", alcohol:"50% ethanol", steep:"3–4 weeks", dose:"1–2 mL after meals or as needed", instructions:"Pack fresh or dried peppermint leaves into jar. Cover with 50% alcohol. Steep 3–4 weeks. The tincture develops a vivid green color and intense menthol aroma. Strain and bottle. For headaches, apply diluted tincture to temples topically." }},
   { name:"Reishi", latin:"Ganoderma lucidum", emoji:"🍄", category:"Adaptogen", uses:"Immune modulation, reduces stress, improves sleep quality, liver protective, anti-tumor properties, and calms the nervous system.", benefits:["Immune modulation","Stress relief","Sleep","Liver protection"], tincture:{ ratio:"1:5 (sliced dried mushroom to menstruum)", alcohol:"Double extraction required", steep:"8 weeks total", dose:"2–4 mL, 1–2x daily long-term", instructions:"DOUBLE EXTRACTION required (like lion's mane): Simmer dried slices in water for 2–4 hours. Separately steep in 60% alcohol for 6–8 weeks. Combine 1:1. Reishi has a very bitter taste — some prefer to take it in small capsules or mask it in tea or coffee." }},
   { name:"Rosemary", latin:"Salvia rosmarinus", emoji:"🌿", category:"Cognitive & Circulatory", uses:"Improves memory and concentration, stimulates circulation, antimicrobial, relieves headaches, supports liver function, and hair growth.", benefits:["Memory","Circulation","Antimicrobial","Hair health"], tincture:{ ratio:"1:5 (fresh herb to menstruum)", alcohol:"60% ethanol", steep:"4–6 weeks", dose:"2–3 mL, 2–3x daily", instructions:"Use fresh rosemary sprigs — strip leaves from stems. Cover with 60% alcohol. Steep 4–6 weeks. The tincture turns a beautiful amber-green. Strain and bottle. Can also be used externally — dilute and massage into scalp to stimulate hair growth." }},
   { name:"Sage", latin:"Salvia officinalis", emoji:"🌿", category:"Women's Health & Cognitive", uses:"Reduces hot flashes and night sweats, antibacterial for sore throats, improves memory, regulates excessive sweating, and antifungal.", benefits:["Menopause relief","Sore throat","Memory","Antibacterial"], tincture:{ ratio:"1:5 (fresh leaves to menstruum)", alcohol:"50% ethanol", steep:"4–6 weeks", dose:"2–4 mL, 3x daily for menopausal symptoms", instructions:"Pack fresh sage leaves into jar. Cover with 50% alcohol. Steep 4–6 weeks. Strain and bottle. Note: Avoid therapeutic doses during pregnancy or breastfeeding. For sore throats, dilute and gargle with the tincture." }},
-  { name:"Skullcap", latin:"Scutellaria lateriflora", emoji:"🔵", category:"Nervine", uses:"Calms nervous system, reduces anxiety, relieves muscle tension and spasms, helps with insomnia, and supports recovery from addiction.", benefits:["Anxiety","Muscle tension","Insomnia","Nervous system"], tincture:{ ratio:"1:5 (fresh herb strongly preferred)", alcohol:"50% ethanol", steep:"4 weeks", dose:"2–4 mL, 3x daily", instructions:"Fresh skullcap is significantly more potent than dried. If possible, use fresh aerial parts at 1:2 ratio in 50% alcohol. Dried herb at 1:5 ratio. Steep 4 weeks. Strain and bottle. One of the most effective herbs for acute anxiety — takes effect within 20–30 minutes." }},
+  { name:"Skullcap", latin:"Scutellaria lateriflora", emoji:"🔵", category:"Nervine", uses:"Calms nervous system, reduces anxiety, relieves muscle tension and spasms, helps with insomnia, and supports recovery from addiction.", benefits:["Anxiety","Sleep","Muscle tension","Insomnia"], tincture:{ ratio:"1:5 (fresh herb strongly preferred)", alcohol:"50% ethanol", steep:"4 weeks", dose:"2–4 mL, 3x daily", instructions:"Fresh skullcap is significantly more potent than dried. If possible, use fresh aerial parts at 1:2 ratio in 50% alcohol. Dried herb at 1:5 ratio. Steep 4 weeks. Strain and bottle. One of the most effective herbs for acute anxiety — takes effect within 20–30 minutes." }},
   { name:"St. John's Wort", latin:"Hypericum perforatum", emoji:"🌟", category:"Mood & Nervine", uses:"Mild to moderate depression, nerve pain, anxiety, wound healing, and antiviral properties. One of the most researched medicinal herbs.", benefits:["Depression","Nerve pain","Anxiety","Antiviral"], tincture:{ ratio:"1:3 (fresh flowers in oil preferred, or 1:5 for alcohol)", alcohol:"60% ethanol", steep:"6 weeks", dose:"2–4 mL, 3x daily — requires 4–6 weeks of consistent use", instructions:"Harvest bright yellow flowers when newly opened (the oil of fresh flowers turns red — this is correct!). Cover with 60% alcohol and steep 6 weeks. The tincture should turn a deep red-purple. IMPORTANT: Significantly interacts with many medications including antidepressants and birth control. Consult a doctor if on medications." }},
   { name:"Thyme", latin:"Thymus vulgaris", emoji:"🌿", category:"Respiratory", uses:"Powerful expectorant for coughs, antimicrobial, antifungal, supports respiratory health, and is a rich source of antioxidants.", benefits:["Cough relief","Expectorant","Antimicrobial","Respiratory"], tincture:{ ratio:"1:5 (fresh herb to menstruum)", alcohol:"50% ethanol", steep:"4–6 weeks", dose:"2–4 mL, 3–4x daily during respiratory illness", instructions:"Strip thyme leaves from stems and pack into jar. Cover with 50% alcohol. Steep 4–6 weeks. Strain and bottle. For coughs, combine with marshmallow root and mullein. Can also be added to a steam inhalation bowl by putting a few drops in hot water and breathing the steam." }},
   { name:"Turmeric", latin:"Curcuma longa", emoji:"🟡", category:"Anti-inflammatory", uses:"Potent anti-inflammatory, antioxidant, liver supportive, may help with arthritis, depression, heart disease, and cancer prevention.", benefits:["Anti-inflammatory","Antioxidant","Joint health","Liver"], tincture:{ ratio:"1:5 (fresh or dried root to menstruum)", alcohol:"60% ethanol + black pepper", steep:"6 weeks", dose:"3–5 mL, 2–3x daily with food", instructions:"Grate or chop fresh turmeric root (or use powder). Add a pinch of black pepper — piperine increases curcumin absorption by up to 2000%. Cover with 60% alcohol. Steep 6 weeks. Strain and bottle. Note: Stains everything orange — use dedicated tools!" }},
   { name:"Uva Ursi", latin:"Arctostaphylos uva-ursi", emoji:"🫐", category:"Urinary", uses:"Urinary tract antiseptic, antibacterial for E. coli, reduces UTI symptoms, and traditional kidney support herb.", benefits:["UTI relief","Antibacterial","Urinary health","Kidney support"], tincture:{ ratio:"1:5 (dried leaves to menstruum)", alcohol:"40% ethanol", steep:"4–6 weeks", dose:"2–4 mL, 3–4x daily during UTI — short-term use only", instructions:"Use dried uva ursi leaves. Cover with 40% alcohol. Steep 4–6 weeks. Strain and bottle. IMPORTANT: Use for acute UTI treatment only (no more than 2 weeks continuously). Works best when urine is alkaline — eat alkaline foods while taking. Not suitable for pregnant women or children." }},
-  { name:"Valerian", latin:"Valeriana officinalis", emoji:"😴", category:"Nervine", uses:"Most powerful herbal sedative for insomnia, reduces anxiety, relieves muscle tension and cramps, may reduce blood pressure.", benefits:["Insomnia","Anxiety","Muscle relaxant","Blood pressure"], tincture:{ ratio:"1:5 (root to menstruum)", alcohol:"60% ethanol", steep:"4–6 weeks", dose:"3–5 mL, 30–60 minutes before bed", instructions:"Chop dried valerian root. Cover with 60% alcohol. Steep 4–6 weeks, shaking daily. Strain and bottle in dark glass. Warning: Has a very strong, unpleasant odor — this is normal! Best masked in juice or herbal tea. 10–15% of people experience stimulant effects — discontinue if this happens." }},
+  { name:"Valerian", latin:"Valeriana officinalis", emoji:"😴", category:"Nervine", uses:"Most powerful herbal sedative for insomnia, reduces anxiety, relieves muscle tension and cramps, may reduce blood pressure.", benefits:["Insomnia","Sleep","Anxiety","Muscle relaxant"], tincture:{ ratio:"1:5 (root to menstruum)", alcohol:"60% ethanol", steep:"4–6 weeks", dose:"3–5 mL, 30–60 minutes before bed", instructions:"Chop dried valerian root. Cover with 60% alcohol. Steep 4–6 weeks, shaking daily. Strain and bottle in dark glass. Warning: Has a very strong, unpleasant odor — this is normal! Best masked in juice or herbal tea. 10–15% of people experience stimulant effects — discontinue if this happens." }},
   { name:"Wild Oat", latin:"Avena sativa (milky oat tops)", emoji:"🌾", category:"Nervine & Nutritive", uses:"Nourishes and restores exhausted nervous system, helps with burnout, anxiety, depression, and is a long-term nervine tonic.", benefits:["Nervous exhaustion","Burnout","Anxiety","Tonic nervine"], tincture:{ ratio:"1:2 (fresh milky oat tops only)", alcohol:"60% ethanol", steep:"Use within 48 hours of harvest ideally", dose:"3–5 mL, 3–4x daily for weeks to months", instructions:"This tincture MUST be made from fresh milky oat tops harvested at the 'milky' stage (squeeze a grain — a white latex should emerge). Dried oats have minimal effect. Pack immediately into jar, cover with 60% ethanol. This is a long-acting tonic herb — use consistently for weeks to months for best results." }},
   { name:"Yarrow", latin:"Achillea millefolium", emoji:"🌼", category:"First Aid & Women's Health", uses:"Stops bleeding (styptic), reduces fever by inducing sweating, anti-inflammatory, regulates heavy periods, and supports wound healing.", benefits:["Wound care","Fever reduction","Anti-inflammatory","Menstrual"], tincture:{ ratio:"1:5 (aerial parts to menstruum)", alcohol:"50% ethanol", steep:"4–6 weeks", dose:"2–4 mL, 3x daily or topically for wounds", instructions:"Use aerial parts (leaves and flowers) at peak bloom. Cover with 50% alcohol. Steep 4–6 weeks. Strain and bottle. For bleeding wounds, apply directly to wound on clean cloth. For fever, take with warm water to promote sweating. Note: Avoid during pregnancy." }},
 ];
 
-const categories = ["All","Adaptogen","Cognitive","Digestive","Immune Support","Nervine & Mood","Respiratory","Skin & Healing"];
+const categories = ["All"];
 let activeCategory = "All";
 let currentHerb = null;
 let currentTab = "info";
 
 function matchesCategory(herb, cat) {
   if (cat === "All") return true;
-  if (cat === "Nervine & Mood") return ["Nervine","Mood & Nervine","Nervine & Nutritive"].includes(herb.category);
+  if (cat === "Nervous System") return ["Nervine","Mood & Nervine","Nervine & Nutritive"].includes(herb.category);
   return herb.category === cat;
-}
-
-function renderFilters() {
-  const wrap = document.getElementById("filters");
-  wrap.innerHTML = categories.map(cat =>
-    `<button class="filter-btn${activeCategory===cat?" active":""}" onclick="setCategory('${cat}')">${cat}</button>`
-  ).join("");
 }
 
 function setCategory(cat) {
   activeCategory = cat;
-  renderFilters();
   renderGrid();
 }
 
 function renderGrid() {
-  const q = document.getElementById("search-input").value.toLowerCase();
   const filtered = herbs.filter(h => {
-    const matchSearch = !q || h.name.toLowerCase().includes(q) || h.uses.toLowerCase().includes(q) || h.benefits.some(b => b.toLowerCase().includes(q));
-    return matchSearch && matchesCategory(h, activeCategory);
+    const matchFeeling = !activeFeeling || feelingKeywords[activeFeeling].some(k => {
+      const searchText = [h.name, h.uses, h.category, ...h.benefits].join(' ').toLowerCase();
+      return searchText.includes(k);
+    });
+    return matchFeeling && matchesCategory(h, activeCategory);
   });
   document.getElementById("herb-count").textContent = `${filtered.length} herb${filtered.length!==1?"s":""} found`;
   const grid = document.getElementById("grid");
@@ -346,7 +355,11 @@ function switchTab(tab) {
 
 function renderTabs() {
   document.querySelectorAll(".tab-btn").forEach((btn, i) => {
-    btn.classList.toggle("active", (i===0 && currentTab==="info") || (i===1 && currentTab==="tincture"));
+    btn.classList.toggle("active",
+      (i===0 && currentTab==="info") ||
+      (i===1 && currentTab==="tincture") ||
+      (i===2 && currentTab==="tea")
+    );
   });
 }
 
@@ -384,11 +397,103 @@ function renderTabContent() {
         <p class="af-note">Note: Glycerites are less potent than alcohol tinctures and have a shorter shelf life (1–2 years vs 5+ years). They work best for mild herbs like chamomile, lemon balm, and lavender. For highly resinous or potent herbs, alcohol extraction is significantly more effective.</p>
       </div>`;
   }
+  if (currentTab === "tea") {
+    const t = teas[h.name] || {};
+    html = `
+      <p class="section-label" style="color:#7ab8d8">☕ TEA RECIPE</p>
+      <div class="tea-grid">
+        <div class="tea-cell"><div class="tea-cell-label">PARTS USED</div><div class="tea-cell-value">${t.parts||"—"}</div></div>
+        <div class="tea-cell"><div class="tea-cell-label">AMOUNT</div><div class="tea-cell-value">${t.amount||"—"}</div></div>
+        <div class="tea-cell"><div class="tea-cell-label">WATER TEMP</div><div class="tea-cell-value">${t.temp||"—"}</div></div>
+        <div class="tea-cell"><div class="tea-cell-label">STEEP TIME</div><div class="tea-cell-value">${t.steep||"—"}</div></div>
+        <div class="tea-cell"><div class="tea-cell-label">METHOD</div><div class="tea-cell-value">${t.method||"—"}</div></div>
+        <div class="tea-cell"><div class="tea-cell-label">CUPS PER DAY</div><div class="tea-cell-value">${t.cups||"—"}</div></div>
+      </div>
+      <p class="section-label" style="color:#7ab8d8">TASTE</p>
+      <p class="tea-method">${t.taste||"—"}</p>
+      <p class="section-label" style="color:#7ab8d8">BLENDING SUGGESTIONS</p>
+      <p class="tea-blend">${t.blend||"—"}</p>
+      <div class="tea-tip">💡 <strong>Tip:</strong> ${t.tip||"—"}</div>`;
+  }
   document.getElementById("tab-content").innerHTML = html;
 }
 
+
+const teas = {
+  "Ashwagandha":   { parts:"Root (powder or sliced)", amount:"1 tsp powder or 2 tsp sliced root", temp:"Simmer (not boiling)", method:"Decoction — simmer in 2 cups water for 15–20 mins", steep:"15–20 min simmer", cups:"1–2 cups daily", taste:"Earthy, slightly bitter, horse-like", blend:"Add cinnamon, cardamom, honey and warm milk for a traditional golden milk", tip:"Covering the pot while simmering preserves the active compounds." },
+  "Basil":         { parts:"Fresh or dried leaves", amount:"1 tbsp fresh or 1 tsp dried", temp:"Just off boil (90°C)", method:"Infusion — pour water over leaves", steep:"5–7 mins covered", cups:"2–3 cups daily", taste:"Sweet, slightly peppery, aromatic", blend:"Pairs well with lemon and honey", tip:"Cover while steeping to retain volatile oils." },
+  "Black Elderberry": { parts:"Dried berries", amount:"1–2 tbsp dried berries", temp:"Boiling", method:"Decoction — simmer berries 15 mins", steep:"15 min simmer", cups:"2–3 cups daily when ill", taste:"Tart, fruity, slightly sweet", blend:"Add cloves, cinnamon and honey for a warming immune syrup tea", tip:"Never use raw berries — always cook or dry first." },
+  "Calendula":     { parts:"Dried flowers", amount:"1–2 tsp dried petals", temp:"Just off boil (90°C)", method:"Infusion", steep:"10–15 mins covered", cups:"2–3 cups daily", taste:"Mild, slightly bitter, floral", blend:"Pairs beautifully with chamomile and rose petals", tip:"The golden colour deepens the longer you steep." },
+  "Chamomile":     { parts:"Dried flowers", amount:"1–2 heaped tsp", temp:"Just off boil (90°C)", method:"Infusion", steep:"5–10 mins covered", cups:"1–3 cups daily, 1 cup before bed", taste:"Mild, apple-like, gently sweet", blend:"Classic with lavender or lemon balm for a sleep blend", tip:"Always cover while steeping — heat escapes and takes the volatile oils with it." },
+  "Dandelion":     { parts:"Root (roasted for tea) or leaves", amount:"1–2 tsp dried root or 1 tbsp fresh leaves", temp:"Boiling for root, just off boil for leaves", method:"Decoction for root, infusion for leaves", steep:"10–15 min simmer (root) or 10 mins (leaves)", cups:"2–3 cups daily before meals", taste:"Earthy, slightly bitter, coffee-like (roasted root)", blend:"Roasted dandelion root makes an excellent coffee substitute", tip:"Roasted root has a richer flavour and is easier on digestion." },
+  "Echinacea":     { parts:"Root or aerial parts (flowers, leaves)", amount:"1–2 tsp dried herb", temp:"Boiling", method:"Decoction for root, infusion for aerial parts", steep:"10–15 min simmer (root) or 15 mins steep", cups:"3–4 cups daily at onset of illness", taste:"Earthy, slightly tingling on the tongue — that tingle means it's working", blend:"Add elderberry and ginger for a powerful immune tea", tip:"The tingling sensation on the tongue is characteristic and desirable." },
+  "Ginger":        { parts:"Fresh or dried root", amount:"1 inch fresh sliced or 1 tsp dried", temp:"Boiling", method:"Decoction — simmer 10 mins", steep:"10 min simmer + 5 min steep", cups:"2–3 cups daily", taste:"Spicy, warming, pungent", blend:"Classic with lemon and honey — add turmeric for anti-inflammatory boost", tip:"Fresh ginger is significantly more potent than dried." },
+  "Hawthorn":      { parts:"Dried berries, leaves, or flowers", amount:"1–2 tsp dried herb", temp:"Boiling", method:"Decoction for berries, infusion for flowers/leaves", steep:"15–20 min simmer (berries) or 10 mins (flowers)", cups:"2–3 cups daily long-term", taste:"Mildly tart and fruity (berries), delicate and floral (flowers)", blend:"Pairs with rose petals and hibiscus for a heart-healthy blend", tip:"Results are cumulative — drink consistently for at least 6–8 weeks." },
+  "Lavender":      { parts:"Dried flowers", amount:"1 tsp dried flowers", temp:"Just off boil (90°C)", method:"Infusion", steep:"5–7 mins covered", cups:"1–2 cups daily, 1 cup before bed", taste:"Floral, slightly sweet, aromatic", blend:"Lovely with chamomile and a drop of honey", tip:"Don't over-steep — more than 10 mins turns it bitter and soapy." },
+  "Lemon Balm":    { parts:"Fresh or dried leaves", amount:"2 tbsp fresh or 1–2 tsp dried", temp:"Just off boil (90°C)", method:"Infusion", steep:"5–10 mins covered", cups:"2–4 cups daily", taste:"Lemony, fresh, mildly minty", blend:"Beautiful with chamomile and passionflower for a calming night blend", tip:"Fresh lemon balm makes a far superior tea — use generously." },
+  "Lion's Mane":   { parts:"Dried mushroom (sliced or powder)", amount:"2–3 tsp powder or 10g dried pieces", temp:"Boiling", method:"Decoction — simmer 20–40 mins", steep:"20–40 min simmer", cups:"1–2 cups daily", taste:"Mild, slightly seafood-like, earthy", blend:"Blend with reishi and cacao for a brain-boosting hot chocolate", tip:"Long simmering is essential to extract the beta-glucans. Add to broths and soups too." },
+  "Marshmallow Root": { parts:"Dried root", amount:"1–2 tbsp dried root", temp:"Cold or room temperature water only", method:"Cold infusion — do NOT use hot water", steep:"4–8 hours or overnight in cold water", cups:"3–4 cups daily", taste:"Mildly sweet, thick, mucilaginous", blend:"Add a little lemon juice and honey", tip:"Hot water destroys the mucilage — the very compound that makes marshmallow root effective. Always use cold water." },
+  "Milk Thistle":  { parts:"Crushed seeds", amount:"1 tsp freshly crushed seeds", temp:"Just off boil (90°C)", method:"Infusion — crush seeds first", steep:"10–15 mins", cups:"2–3 cups daily", taste:"Mild, slightly nutty, earthy", blend:"Add dandelion root for a liver-supportive blend", tip:"Crush seeds just before brewing — the active compound silymarin is poorly water-soluble so grinding fine helps extraction." },
+  "Motherwort":    { parts:"Dried aerial parts (leaves and flowers)", amount:"1–2 tsp dried herb", temp:"Just off boil (90°C)", method:"Infusion", steep:"10–15 mins covered", cups:"2–3 cups daily", taste:"Very bitter — one of the most bitter medicinal herbs", blend:"Add strong honey, licorice root or peppermint to mask bitterness", tip:"The bitterness is medicinal — it stimulates the bitter receptors that support heart and digestion. Hold your nose and drink!" },
+  "Mullein":       { parts:"Dried leaves and flowers", amount:"1–2 tsp dried leaves or flowers", temp:"Just off boil (90°C)", method:"Infusion", steep:"10–15 mins covered", cups:"3–4 cups daily for respiratory conditions", taste:"Mild, slightly sweet, neutral", blend:"Combine with thyme and marshmallow root for a powerful lung tea", tip:"Always strain through a very fine cloth or coffee filter — the tiny leaf hairs can irritate the throat if not removed." },
+  "Nettle":        { parts:"Dried leaves", amount:"1–2 tsp dried leaf", temp:"Boiling", method:"Infusion", steep:"10–15 mins covered", cups:"2–3 cups daily", taste:"Earthy, green, slightly grassy — surprisingly pleasant", blend:"Add peppermint and lemon for a refreshing allergy tea", tip:"Nettle is extremely nutritious — drinking the tea regularly is like taking a mineral supplement." },
+  "Passionflower": { parts:"Dried aerial parts (leaves, stems, flowers)", amount:"1–2 tsp dried herb", temp:"Just off boil (90°C)", method:"Infusion", steep:"10–15 mins covered", cups:"1–2 cups before bed", taste:"Mild, grassy, slightly earthy", blend:"Pairs perfectly with valerian and lemon balm for a sleep blend", tip:"Take 30–45 minutes before bed. Cover tightly while steeping." },
+  "Peppermint":    { parts:"Fresh or dried leaves", amount:"1 tbsp fresh or 1–2 tsp dried", temp:"Just off boil (90°C)", method:"Infusion", steep:"5–10 mins covered", cups:"2–3 cups daily", taste:"Cool, refreshing, strongly minty", blend:"Add a slice of ginger and lemon for a digestive powerhouse", tip:"Always cover while steeping — the menthol is highly volatile and evaporates quickly." },
+  "Reishi":        { parts:"Dried sliced mushroom", amount:"5–10g dried slices", temp:"Boiling", method:"Decoction — simmer 30–45 mins", steep:"30–45 min simmer", cups:"1–2 cups daily long-term", taste:"Very bitter, woody, earthy", blend:"Add to hot cacao or coffee to mask the bitterness", tip:"The more bitter, the more potent. Long simmering (up to 2 hours) extracts more compounds." },
+  "Rosemary":      { parts:"Fresh or dried leaves", amount:"1 tsp dried or 1 sprig fresh", temp:"Just off boil (90°C)", method:"Infusion", steep:"5–10 mins covered", cups:"1–2 cups daily", taste:"Piney, slightly camphor-like, aromatic", blend:"Add lemon and honey — or combine with sage for a memory-boosting blend", tip:"Best drunk in the morning for focus and circulation — too stimulating before bed." },
+  "Sage":          { parts:"Fresh or dried leaves", amount:"1 tsp dried or 4–5 fresh leaves", temp:"Just off boil (90°C)", method:"Infusion", steep:"5–10 mins covered", cups:"2–3 cups daily", taste:"Warm, slightly camphor, earthy, savoury", blend:"Add lemon and honey — gargle cooled tea for sore throats", tip:"Avoid therapeutic amounts during pregnancy. For hot flashes, drink consistently 3x daily." },
+  "Skullcap":      { parts:"Dried aerial parts", amount:"1–2 tsp dried herb", temp:"Just off boil (90°C)", method:"Infusion", steep:"10–15 mins covered", cups:"2–3 cups daily or 1 cup as needed for anxiety", taste:"Mild, slightly bitter, earthy", blend:"Combine with lemon balm and passionflower for acute anxiety", tip:"Fresh or recently dried skullcap is far more effective than old stock. Source from a reputable supplier." },
+  "St. John's Wort": { parts:"Dried flowers and buds", amount:"1–2 tsp dried herb", temp:"Just off boil (90°C)", method:"Infusion", steep:"10 mins covered", cups:"2–3 cups daily for at least 4–6 weeks", taste:"Mild, slightly astringent, faintly bitter", blend:"Add lemon balm for a mood-lifting blend", tip:"IMPORTANT: St. John's Wort interacts with many medications. Results take 4–6 weeks of consistent use." },
+  "Thyme":         { parts:"Fresh or dried leaves", amount:"1–2 tsp dried or 1 tbsp fresh", temp:"Boiling", method:"Infusion", steep:"10–15 mins covered", cups:"3–4 cups daily during respiratory illness", taste:"Herbal, slightly spicy, aromatic", blend:"Add honey and lemon — honey coats the throat while thyme clears the airways", tip:"Cover tightly while steeping. The volatile thymol oils are the most active compounds." },
+  "Turmeric":      { parts:"Fresh or dried root (powder)", amount:"1 tsp powder or 1 inch fresh", temp:"Boiling", method:"Simmer 10 mins, then steep", steep:"10 min simmer + 5 min steep", cups:"1–2 cups daily with food", taste:"Earthy, slightly bitter, warm and spicy", blend:"The classic golden milk — warm milk, turmeric, black pepper, cinnamon and honey", tip:"ALWAYS add black pepper — piperine increases curcumin absorption by up to 2000%. Add a fat (milk, coconut oil) as curcumin is fat-soluble." },
+  "Uva Ursi":      { parts:"Dried leaves", amount:"1–2 tsp dried leaves", temp:"Cold infusion preferred", method:"Cold infusion OR brief hot infusion (5 mins max)", steep:"4–8 hours cold or 5 mins hot", cups:"3–4 cups daily short-term only", taste:"Astringent, slightly bitter, earthy", blend:"Add corn silk and marshmallow root for a UTI-soothing blend", tip:"Short-term use only (max 2 weeks). Works best when urine is alkaline — avoid acidic foods and drinks." },
+  "Valerian":      { parts:"Dried root", amount:"1–2 tsp dried root", temp:"Cold or warm water — NOT boiling", method:"Cold infusion preferred — hot water degrades valerenic acid", steep:"8–12 hours cold infusion OR 10 mins warm (not hot)", cups:"1 cup 30–60 mins before bed", taste:"Strong, unpleasant, earthy — famously bad tasting", blend:"Mask with peppermint, lemon balm and honey — or take as tincture instead", tip:"The taste is notoriously bad. Holding your breath while drinking helps. Tincture form is much easier to take." },
+  "Wild Oat":      { parts:"Fresh milky oat tops (dried is much weaker)", amount:"2–3 tbsp fresh milky tops or 2 tsp dried", temp:"Just off boil (90°C)", method:"Infusion", steep:"15–20 mins covered", cups:"3–4 cups daily for weeks to months", taste:"Mild, sweet, slightly creamy", blend:"Add chamomile and lemon balm for a nervous system nourishing blend", tip:"This is a tonic herb — drink daily for months. Fresh milky oat tops are dramatically more effective than dried." },
+  "Yarrow":        { parts:"Dried flowers and leaves", amount:"1–2 tsp dried herb", temp:"Just off boil (90°C)", method:"Infusion", steep:"10–15 mins covered", cups:"3 cups daily or as needed for fever", taste:"Bitter, aromatic, slightly medicinal", blend:"Add elderflower and peppermint for a classic fever-breaking blend", tip:"For fever, drink hot and get under blankets to promote sweating. For wounds, apply cooled tea topically on a clean cloth." },
+};
+const feelings = [
+  { label: "Sleep",  emoji: "😴", keywords: ["sleep","insomnia","sedative","calming","rest"] },
+  { label: "Stress",     emoji: "😰", keywords: ["stress","anxiety","adapt","nervous","calm","tension"] },
+  { label: "Energy",   emoji: "⚡", keywords: ["energy","fatigue","boost","vitality","adrenal","burnout"] },
+  { label: "Illness",  emoji: "🤧", keywords: ["immune","cold","flu","antiviral","infection","fever"] },
+  { label: "Gut",   emoji: "🌀", keywords: ["digest","nausea","ibs","stomach","gut","bloat","cramp"] },
+  { label: "Focus",    emoji: "🧠", keywords: ["memory","focus","cognitive","brain","concentration"] },
+  { label: "Inflammation", emoji: "🔥", keywords: ["inflam","pain","arthritis","swelling","joint"] },
+  { label: "Anxiety",      emoji: "💭", keywords: ["anxiety","nerv","panic","worry","tension"] },
+  { label: "Skin",  emoji: "✨", keywords: ["skin","wound","rash","eczema","heal","soothe"] },
+  { label: "Heart",        emoji: "❤️", keywords: ["heart","blood pressure","circulat","cardiovasc"] },
+  { label: "Hormone",     emoji: "🌸", keywords: ["hormone","menstrual","menopause","hot flash","period"] },
+  { label: "Detox",        emoji: "🍃", keywords: ["liver","detox","cleanse","kidney","diuretic"] },
+];
+
+const feelingKeywords = {};
+feelings.forEach(f => { feelingKeywords[f.label] = f.keywords; });
+
+let activeFeeling = null;
+
+function renderHelpRow() {
+  const row = document.getElementById("help-row");
+  row.innerHTML = feelings.map(f =>
+    `<button class="help-btn${activeFeeling===f.label?" active":""}" onclick="selectFeeling('${f.label}')">${f.label}</button>`
+  ).join("");
+}
+
+function selectFeeling(label) {
+  activeFeeling = activeFeeling === label ? null : label;
+  document.getElementById("clear-btn").style.display = activeFeeling ? "inline-block" : "none";
+  renderHelpRow();
+  renderGrid();
+}
+
+function clearSelection() {
+  activeFeeling = null;
+  document.getElementById("clear-btn").style.display = "none";
+  renderHelpRow();
+  renderGrid();
+}
+
 // Init
-renderFilters();
+renderHelpRow();
 renderGrid();
 </script>
 </body>
